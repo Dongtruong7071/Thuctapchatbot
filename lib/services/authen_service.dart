@@ -7,7 +7,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../screens/chatscreens/chatscreen.dart';
 import '../screens/signinscreen.dart';
-import '../services/supabase_service.dart'; // Thêm import SupabaseService
+import '../services/supabase_service.dart';
 
 class AuthenService {
   final SupabaseClient _client = Supabase.instance.client;

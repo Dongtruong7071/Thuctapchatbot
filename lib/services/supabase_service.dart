@@ -12,7 +12,7 @@ class SupabaseService {
 
   Future<void> initialize() async {
     WidgetsFlutterBinding.ensureInitialized();
-    await dotenv.load(fileName: ".env");
+    await dotenv.load(fileName: "keys.env");
 
     if (!_isInitialized) {
       try {
