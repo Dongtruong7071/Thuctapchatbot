@@ -1,10 +1,9 @@
 import 'dart:convert';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
-//lt --port 5678 --subdomain n8n-connect-thanhdong
 class ApiService {
-  static const String n8nWebhookUrl =
-      "https://n8n-connect-thanhdong.loca.lt/webhook-test/4a9d5779-7792-4d1a-9b35-4297d3690f69";
+  static String n8nWebhookUrl = dotenv.env['N8N_API_URL']!;
 
   Future<String> sendDataToN8n(Map<String, dynamic> data) async {
     try {

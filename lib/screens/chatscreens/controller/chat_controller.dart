@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
 import 'package:ungdungchatbot/models/conversation.dart';
 import 'package:ungdungchatbot/services/authen_service.dart';
@@ -20,7 +21,7 @@ class ChatController extends ChangeNotifier {
   List<Conversation> filteredChatGroups = [];
   List<Map<String, String>> messages = [];
   List<Map<String, String>> filteredMessages = [];
-  String userId = '7114a077-c23f-4e91-ba4b-6449c4b9176a';
+  String userId = '';
   String username = '';
   Future<List<String>>? modelNamesFuture;
   String searchKeyword = '';
@@ -53,7 +54,8 @@ class ChatController extends ChangeNotifier {
         username = displayName ?? '';
         notifyListeners();
       } else {
-        print('Không tìm thấy người dùng');
+        userId = dotenv.env['USER_ID'] ?? '';
+        print('Không tìm thấy người dùng, sử dụng userId từ .env: $userId');
       }
     } catch (error) {
       print('Lỗi khi lấy userId hoặc displayName: $error');

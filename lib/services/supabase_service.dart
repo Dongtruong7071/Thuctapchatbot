@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../models/conversation.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class SupabaseService {
   static final SupabaseService _instance = SupabaseService._internal();
@@ -11,11 +12,13 @@ class SupabaseService {
 
   Future<void> initialize() async {
     WidgetsFlutterBinding.ensureInitialized();
+    await dotenv.load(fileName: ".env");
+
     if (!_isInitialized) {
       try {
         await Supabase.initialize(
-          url: 'https://wlbxtgykexnmlgrmoxig.supabase.co',
-          anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndsYnh0Z3lrZXhubWxncm1veGlnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI0Njc2MzAsImV4cCI6MjA1ODA0MzYzMH0.vvMuTIcoxxGZ9-audV25WIaSf2wK7J3yQt_cvfqcupI',
+          url: dotenv.env['SUPABASE_URL']!,
+          anonKey:  dotenv.env['SUPABASE_KEY']!,
         );
         _isInitialized = true;
         print('Supabase đã khởi tạo thành công');
