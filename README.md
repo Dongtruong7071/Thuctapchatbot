@@ -43,7 +43,7 @@ SUPABASE_URL=https://your-supabase-url.supabase.co
 SUPABASE_KEY=your-supabase-anon-key
 N8N_API_URL=https://your-n8n-api-url
 USER_ID=your-user-id-for-testing
-
+WEB_CLIENT_ID=your-id.apps.googleusercontent.com
 
 Lưu ý: Đảm bảo file keys.env được thêm vào .gitignore để tránh commit lên repository.
 Bước 4: Chạy Ứng Dụng

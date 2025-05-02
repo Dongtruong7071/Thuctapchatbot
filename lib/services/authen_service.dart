@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -149,7 +150,13 @@ class AuthenService {
         const SnackBar(content: Text('Đang đăng nhập với Google...')),
       );
 
-      const webClientId = '992900925312-2tqg0usmeuvj4boi34a1c4thu4ustika.apps.googleusercontent.com';
+      final String? webClientId = dotenv.env['WEB_CLIENT_ID'];
+      if (webClientId == null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('WEB_CLIENT_ID không được tìm thấy trong .env')),
+        );
+        return null;
+      }
 
       final GoogleSignIn googleSignIn = GoogleSignIn(
         serverClientId: webClientId,
@@ -283,7 +290,8 @@ class AuthenService {
   // Đăng xuất
   Future<void> signOut(BuildContext context) async {
     try {
-      const webClientId = '992900925312-2tqg0usmeuvj4boi34a1c4thu4ustika.apps.googleusercontent.com';
+
+      final String? webClientId = dotenv.env['WEB_CLIENT_ID'];
 
       final GoogleSignIn googleSignIn = GoogleSignIn(
         serverClientId: webClientId,

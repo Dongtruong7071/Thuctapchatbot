@@ -6,6 +6,8 @@ import 'package:ungdungchatbot/screens/signinscreen.dart';
 import 'package:ungdungchatbot/screens/spashscreen.dart';
 import 'package:ungdungchatbot/services/authen_service.dart';
 import 'package:ungdungchatbot/services/supabase_service.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 
 
 void main() async {
